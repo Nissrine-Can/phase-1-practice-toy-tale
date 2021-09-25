@@ -1,6 +1,5 @@
 let addToy = false;
 
-let toyArray = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.querySelector("#new-toy-btn");
@@ -19,18 +18,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handleSubmit(e) {
     e.preventDefault()
-   //.......
-      
-
+  
+    const input = document.querySelector("input.input-text")
     
-    console.log(toyArray)
-    renderToys(toyArray)
-    createToy(toyObj)
+  
+    renderToys(input)
+    createToy(input)
+    
     
   }
 
   
-
 
   function renderToys(toyArray) {
           toyArray.forEach(toy => {
@@ -54,9 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function getAllToys() {
     fetch("http://localhost:3000/toys")
     .then(res => res.json())
-    .then(function (toyObj) {
-      toyArray = [...Object.values(toyObj)]
-      console.log(toyArray)
+    .then(function (toyArray) {
+    
       renderToys(toyArray)
     })
   }
@@ -71,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(res => res.json())
     .then(toy => console.log(toy))
+
   }
 
 
